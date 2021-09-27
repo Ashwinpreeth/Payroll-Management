@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<unistd.h>
+#include<regex.h>
 #define EMP_FILE "empdata.txt"
 #define TMP_FILE "tmpdata.txt"
 
@@ -217,11 +218,24 @@ void add_employee()
        	 	printf("Address\t\t: ");
         	scanf("%c",&e);
         	scanf("%[^\n]",a.address);
-        	gotoxy(20,14);
-
+Again:		gotoxy(20,14);
+		printf("                                       ");
+		gotoxy(20,14);
         	printf("Phone\t\t: ");
         	scanf("%s",a.phone);
-        	gotoxy(20,15);
+		gotoxy(18,8);
+		printf("                             ");
+		if(strlen(a.phone) == 10)
+		{
+			goto Next;
+		}
+		else
+		{
+			gotoxy(18,8);
+			printf("Invalid Phone Number");
+			goto Again;
+		}
+Next:		gotoxy(20,15);
 
 		printf("Blood_Group\t\t: ");
         	scanf("%s",a.bg);
@@ -230,8 +244,8 @@ void add_employee()
 		printf("DOB[DD-MM-YYYY]\t: ");
         	scanf("%s",a.dob);
         	gotoxy(20,17);
-
-        	printf("Designation\t\t: ");
+	
+        	printf("Department\t\t: ");
         	scanf("%s",a.desig);
         	gotoxy(20,18);
 
